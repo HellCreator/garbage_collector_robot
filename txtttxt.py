@@ -13,7 +13,6 @@ files = glob.glob(os.path.join(input_dir, '*.txt'))
 for fil in files:
     basename = os.path.basename(fil)
     filename = os.path.splitext(basename)[0]
-    print(f'{fil}')
     # check if the label contains the corresponding image file
     if not os.path.exists(os.path.join(image_dir, f"{filename}.jpg")):
         print(f"{filename} image does not exist!")
