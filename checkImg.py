@@ -5,6 +5,8 @@ classes = []
 input_dir = "C:/Users/mohfi/OneDrive/Desktop/Garbage-Image/DATASET/TRAIN\Val/labels/"
 output_dir="C:/Users/mohfi/OneDrive/Desktop/Garbage-Image/DATASET/TRAIN\Val/image/"
 image_dir = "C:/Users/mohfi/OneDrive/Desktop/Garbage-Image/DATASET/TRAIN\Val/images/"
+if not os.path.exists(output_dir):
+    os.mkdir(output_dir)
 files = glob.glob(os.path.join(image_dir, '*.jpg'))
 for fil in files:
     basename = os.path.basename(fil)
