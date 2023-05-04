@@ -5,9 +5,8 @@ classes = []
 input_dir = "C:/Users/mohfi/OneDrive/Desktop/Garbage-Image/train/labels/"
 output_dir = "C:/Users/mohfi/OneDrive/Desktop/Garbage-Image/train/label/"
 image_dir = "C:/Users/mohfi/OneDrive/Desktop/Garbage-Image/train/images/"
-# create the labels folder (output directory)
-#os.mkdir(output_dir)
-# identify all the xml files in the annotations folder (input directory)
+if not os.path.exists(output_dir):
+    os.mkdir(output_dir)
 files = glob.glob(os.path.join(input_dir, '*.txt'))
 # loop through each 
 for fil in files:
