@@ -94,6 +94,10 @@ int main(void)
 		{
 			switch(rcv = UART1_receive_byte())
 			{
+				case 'x':
+					UART1_print("echo ");
+					UART1_print("\r\n");
+					break;
 				case 'v':
 					UART1_print("Podaj nowa predkosc (-255 - 255): ");
 					UART1_gets(tmp,8);
