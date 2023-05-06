@@ -26,9 +26,9 @@ files = glob.glob(os.path.join(image_dir, '*.jpg'))
 filess = glob.glob(os.path.join(Train_dir, '*.jpg'))
 filesss = glob.glob(os.path.join(Val_dir, '*.jpg'))
 filessss = glob.glob(os.path.join(test_dir, '*.jpg'))
-cTr=filess.count()
-cVal=filesss.count()
-cTest=filessss.count()
+cTr=len(filess)
+cVal=len(filesss)
+cTest=len(filessss)
 if cTr!= range(0,25001,5):
     for fil in range(0,25001-(cTr*5),5):
         basename = os.path.basename(files[fil])
