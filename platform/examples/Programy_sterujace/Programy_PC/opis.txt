@@ -1,0 +1,10 @@
+Explorer-panel
+
+Program pozwala na p³ynne sterowanie robotem z komputera PC za pomoc¹ Joysticka.
+Komunikacja z robotem odbywa sie na drodze radiowej z wykorzystaniem modu³ów MOBOT-RCRv2-USB (dla komputera) oraz MOBOT-RCRv2 (dla robota).
+
+
+P³yta steruj¹ca powinna miec wgrany program "Program-Zdalnie_sterowany".
+Wybrany kana³ - 0
+
+
