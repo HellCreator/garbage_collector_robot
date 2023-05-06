@@ -27,23 +27,23 @@ for fil in range(0,25001,5):
     basename = os.path.basename(files[fil])
     filename = os.path.splitext(basename)[0]
     if  os.path.exists(os.path.join(input_dir, f"{filename}.txt")):
-        shutil.copyfile(os.path.join(image_dir,basename), f"{os.path.join(Train_dir,basename)}")
-        shutil.copyfile(os.path.join(input_dir,basename), f"{os.path.join(Train_dirl,basename)}")
+        shutil.copyfile(os.path.join(image_dir,basename), os.path.join(Train_dir,basename))
+        shutil.copyfile(os.path.join(input_dir,f"{filename}.txt"), os.path.join(Train_dirl,f"{filename}.txt"))
         os.remove(os.path.join(image_dir,basename))
-        os.remove(os.path.join(input_dir,basename))
+        os.remove(os.path.join(input_dir,f"{filename}.txt"))
 for fill in range(-1,10001,5):
     basename = os.path.basename(files[fill])
     filename = os.path.splitext(basename)[0]
     if  os.path.exists(os.path.join(input_dir, f"{filename}.txt")):
         shutil.copyfile(os.path.join(image_dir,basename), f"{os.path.join(Val_dir,basename)}")
-        shutil.copyfile(os.path.join(input_dir,basename), f"{os.path.join(Val_dirl,basename)}")
+        shutil.copyfile(os.path.join(input_dir,f"{filename}.txt"), os.path.join(Val_dirl,f"{filename}.txt"))
         os.remove(os.path.join(image_dir,basename))
-        os.remove(os.path.join(input_dir,basename))
+        os.remove(os.path.join(input_dir,f"{filename}.txt"))
 for fill in range(0,5001,5):
     basename = os.path.basename(files[fill])
     filename = os.path.splitext(basename)[0]
     if  os.path.exists(os.path.join(input_dir, f"{filename}.txt")):
         shutil.copyfile(os.path.join(image_dir,basename), f"{os.path.join(test_dir,basename)}")
-        shutil.copyfile(os.path.join(input_dir,basename), f"{os.path.join(test_dirl,basename)}")
+        shutil.copyfile(os.path.join(input_dir,basename), os.path.join(test_dirl,f"{filename}.txt"))
         os.remove(os.path.join(image_dir,basename))
-        os.remove(os.path.join(input_dir,basename))
+        os.remove(os.path.join(input_dir,f"{filename}.txt"))
