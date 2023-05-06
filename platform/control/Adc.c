@@ -151,7 +151,7 @@ Argumenty:
 Opis:
 	Wylaczenie (calkowite) przetwornika ADC
 *******************************************************************************/
-inline void ADC_turn_off(void)
+void ADC_turn_off(void)
 {
 	ADCSRA &= ~(1<<ADEN);
 }
@@ -164,7 +164,7 @@ Argumenty:
 Opis:
 	Funkcja wlacza przetwornik ADC, nie rozpoczynajac konwersji
 *******************************************************************************/
-inline void ADC_turn_on(void)
+void ADC_turn_on(void)
 {
 	ADCSRA |= (1<<ADEN);
 }
