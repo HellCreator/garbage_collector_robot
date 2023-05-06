@@ -99,7 +99,7 @@ extern void UART1_disable(void)
 ////////////////////////////////////////////////////////////////////////////////
 //Przerwanie od odebranego znaku
 ////////////////////////////////////////////////////////////////////////////////
-SIGNAL(SIG_UART0_RECV)
+SIGNAL(USART0_RX_vect)
 {
    
 	static unsigned char data;
@@ -124,7 +124,7 @@ SIGNAL(SIG_UART0_RECV)
 	}
 
 }
-SIGNAL(SIG_UART1_RECV)
+SIGNAL(USART1_RX_vect)
 {
    
 	static unsigned char data;
@@ -153,7 +153,7 @@ SIGNAL(SIG_UART1_RECV)
 //Przerwanie od pustego rejestru nadawczego (wywolywane jest cyklicznie
 //jesli dane zostaly wyslane, dlatego jest niezbedne jego wlaczanie/wylaczanie)
 ////////////////////////////////////////////////////////////////////////////////
-SIGNAL(SIG_UART0_DATA)
+SIGNAL(USART0_UDRE_vect)
 {
 	
 	static unsigned char tmptail;
@@ -172,7 +172,7 @@ SIGNAL(SIG_UART0_DATA)
 	  	UCSR0B &= ~(1<<UDRIE);			//wylacz przerwania UDRE
 	}
 }
-SIGNAL(SIG_UART1_DATA)
+SIGNAL(USART1_UDRE_vect)
 {
 	
 	static unsigned char tmptail;

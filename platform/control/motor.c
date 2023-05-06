@@ -7,10 +7,10 @@ p.piatek@wobit.com.pl
 WObit 2008
 
 Opis:
-	Pliik zawiera funkcje do sterowania driverami silnikow DC na p³ycie 
+	Pliik zawiera funkcje do sterowania driverami silnikow DC na pï¿½ycie 
 MOBOT-EXP MB oraz dodatkowymi driverami na plycie rozszerzen MOBOT-EXP MCB
 *******************************************************************************/
-#include "main.h"
+#include "Main.h"
 
 /*******************************************************************************
 Funkcja:
@@ -24,8 +24,8 @@ o rozdzielczosci 8 bitow i czestotliwosci ok 4kHz
 void MOTOR_init(void)
 {
   	TCCR3A |= (1<<COM3A1)|(1<<COM3B1)|(1<<COM3A0)|(1<<COM3B0)|(1<<WGM30);   
-    TCCR3B |= (1<<CS31); //8bit Phase Correct PWM inverting mode dla silników kó³
-						//preskaler przez 8 co da czêstotliwoœæ ok 4kHz
+    TCCR3B |= (1<<CS31); //8bit Phase Correct PWM inverting mode dla silnikï¿½w kï¿½
+						//preskaler przez 8 co da czï¿½stotliwoï¿½ï¿½ ok 4kHz
 
   	PG3_SLEEP_PORT &= ~(1<<PG3_SLEEP); //uspienie silnikow	
 }
@@ -132,7 +132,7 @@ void MOTOR34_init(void)
 {
 	TCCR1A = (1<<COM1A1)|(1<<COM1B1)|(1<<WGM30);
     TCCR1B = (1<<CS11); //8bit Phase Correct PWM, 
-						//preskaler przez 8 co da czêstotliwoœæ ok 4kHz
+						//preskaler przez 8 co da czï¿½stotliwoï¿½ï¿½ ok 4kHz
 }
 /*******************************************************************************
 Funkcja:

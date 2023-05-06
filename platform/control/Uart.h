@@ -24,8 +24,8 @@
 #define UCSRC UCSR0C
 #define UDR UDR0
 #define UBRRL UBRR0L
-#define SIG_UART_RECV SIG_UART0_RECV
-#define SIG_UART_DATA SIG_UART0_DATA
+#define SIG_UART_RECV USART0_RX_vect
+#define SIG_UART_DATA USART0_UDRE_vect
 #endif
 */
 
@@ -35,8 +35,8 @@
 #define UCSRC UCSR1C
 #define UDR UDR1
 #define UBRRL UBRR1L
-#define SIG_UART_RECV SIG_UART1_RECV
-#define SIG_UART_DATA SIG_UART1_DATA
+#define SIG_UART_RECV USART1_RX_vect
+#define SIG_UART_DATA USART1_UDRE_vect
 #endif
 
 #define UART_CR UART_transmit_byte('\r')

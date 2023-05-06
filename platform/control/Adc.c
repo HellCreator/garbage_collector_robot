@@ -10,11 +10,11 @@ Opis:
 	Pliik zawiera funkcje do obslugi przetwornika ADC, oraz funkcje obslugi 
 przerwania ktora uaktualnia zmiene globalne uint_global_prad_Mx przechowujace 
 wartosci pradow silnikow w mA. Przetwornik pracuje z czestotliwoscia 125kHz przy
-kwarcu 16MHz, w trybie ci¹g³ej konwersji. Dla kazdego mierzonego kanalu ADC 
+kwarcu 16MHz, w trybie ciï¿½gï¿½ej konwersji. Dla kazdego mierzonego kanalu ADC 
 liczona jest srednia z 16 probek co daje uaktualnienie wszystkich wartosci pradow 
 z czestotliwoscia ok 122Hz (ok. 8ms)
 *******************************************************************************/
-#include "main.h"
+#include "Main.h"
 
 ISR(ADC_vect) //Przerwanie ADC Conversion Complete
 {
@@ -120,7 +120,7 @@ Argumenty:
 	- brak
 Opis:
 	Inicjalizacja przetwornika ADC, wybor zrodla odniesienia, wlaczenie przerwan, 
-autowyzwalanie i konfiguracja zegara ADC oraz w³¹czenie przetwornika
+autowyzwalanie i konfiguracja zegara ADC oraz wï¿½ï¿½czenie przetwornika
 *******************************************************************************/
 void ADC_init(void)
 {
@@ -138,7 +138,7 @@ Argumenty:
 Opis:
 	Rozpoczyna pierwsza konwersje, po wlaczeniu przetwornika ADC
 *******************************************************************************/
-inline void ADC_start_conversion(void)
+void ADC_start_conversion(void)
 {
 	ADCSRA|=(1<<ADSC);
 }

@@ -24,7 +24,7 @@ przetwornika ADC.
 
 //deklaracje funkcji
 void ADC_init(void);
-inline void ADC_start_conversion(void);
+void ADC_start_conversion(void);
 inline void ADC_turn_off(void);
 inline void ADC_turn_on(void);
 

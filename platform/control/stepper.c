@@ -65,7 +65,7 @@ Opis:
 	Powoduje wlaczenie tranzystorow w sterowniku silnika krokowego, przez co 
 przez silnik zaczyna plynac prad i pojawia sie moment trzymajacy
 *******************************************************************************/
-inline void STEP_enable(void)
+void STEP_enable(void)
 {
 	STEP_ENABLE_PORT &= ~(1<<STEP_ENABLE);
 }
@@ -78,7 +78,7 @@ Opis:
 	Powoduje wylaczenie tranzystorow w sterowniku silnika krokowego, przez co 
 przez silnik przestaje plynac prad i zanika sie moment trzymajacy
 *******************************************************************************/
-inline void STEP_disable(void)
+void STEP_disable(void)
 {
 	STEP_ENABLE_PORT |= (1<<STEP_ENABLE);
 }
@@ -90,7 +90,7 @@ Argumenty:
 Opis:
 	Przelacza kierunek obrotow silnika krokowego w lewo (kierunek umowny)
 *******************************************************************************/
-inline void STEP_set_dir_l(void)
+void STEP_set_dir_l(void)
 {
 	STEP_DIR_PORT &= ~(1<<STEP_DIR);
 }
@@ -102,7 +102,7 @@ Argumenty:
 Opis:
 	Przelacza kierunek obrotow silnika krokowego w prawo (kierunek umowny)
 *******************************************************************************/
-inline void STEP_set_dir_r(void)
+void STEP_set_dir_r(void)
 {
 	STEP_DIR_PORT |= (1<<STEP_DIR);
 }
@@ -115,7 +115,7 @@ Opis:
 	Wlacza timer generujacy przebieg prostokatny dla sterownika silnika
 krokowego, dzieki czemu silnik zaczyna sie obracac
 *******************************************************************************/
-inline void STEP_start(void)
+void STEP_start(void)
 {
 	TCCR2 |= (1<<WGM21)|(1<<COM20)|(1<<CS22)|(1<<CS20);
 }
@@ -128,7 +128,7 @@ Opis:
 	Wylacza timer generujacy przebieg prostokatny dla sterownika silnika
 krokowego, dzieki czemu silnik przestaje sie obracac.
 *******************************************************************************/
-inline void STEP_stop(void)
+void STEP_stop(void)
 {
 	TCCR2 &= ~((1<<CS22)|(1<<CS20));
 }
@@ -177,7 +177,7 @@ Opis:
 krokowego w stan uspienia (wspolne wyprowadzenie PG3_SLEEP), obnizajac pobor 
 pradu
 *******************************************************************************/
-inline void STEP_sleep(void)
+void STEP_sleep(void)
 {
 	PG3_SLEEP_PORT &= ~(1<<PG3_SLEEP); 
 }
@@ -190,7 +190,7 @@ Opis:
 	Funkcja wyprowadza drivery silnikow od kol napedowych oraz driver silnika 
 krokowego ze stanu uspienia (wspolne wyprowadzenie PG3_SLEEP).
 *******************************************************************************/
-inline void STEP_wake_up(void)
+void STEP_wake_up(void)
 {
 	PG3_SLEEP_PORT |= (1<<PG3_SLEEP); 	
 }
@@ -203,7 +203,7 @@ Opis:
 	Funkcja zwraca aktualne polozenie walu silnika w (mikro)krokach, faktyczny 
 kat orotu zalezy od podzialu krokow sterownika ustawionego zworkami na plytce
 *******************************************************************************/
-inline int STEP_get_pos(void)
+int STEP_get_pos(void)
 {
 	return global_step_pos;
 }

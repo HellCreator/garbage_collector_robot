@@ -12,7 +12,7 @@ Opis:
 wyprowadzenia mikrokontrolera. W funkcji glownej wywolywane sa najpierw funkcje
 inicjalizujace poszczegolne uzyte uklady peryferyjne mikrokontrolera, nastepnie
 w glownej petli oczekuje na odbior polecen przez UART odpowiednio na nie reagujac.
-Program mo¿na testowaæ za pomoc¹ dowolnego terminala.
+Program moï¿½na testowaï¿½ za pomocï¿½ dowolnego terminala.
 Ustawienia portu COM:
 57600 8N1
 *******************************************************************************/
@@ -69,7 +69,7 @@ int main(void)
     unsigned char rcv;
     char tmp[8];
     int itmp;
-	    
+
     ioinit();	
 	UART0_init();					  
     UART1_init();
