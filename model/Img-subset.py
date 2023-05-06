@@ -44,6 +44,6 @@ for fill in range(0,5001,5):
     filename = os.path.splitext(basename)[0]
     if  os.path.exists(os.path.join(input_dir, f"{filename}.txt")):
         shutil.copyfile(os.path.join(image_dir,basename), f"{os.path.join(test_dir,basename)}")
-        shutil.copyfile(os.path.join(input_dir,basename), os.path.join(test_dirl,f"{filename}.txt"))
+        shutil.copyfile(os.path.join(input_dir,f"{filename}.txt"), os.path.join(test_dirl,f"{filename}.txt"))
         os.remove(os.path.join(image_dir,basename))
         os.remove(os.path.join(input_dir,f"{filename}.txt"))
