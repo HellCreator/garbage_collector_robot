@@ -86,6 +86,19 @@ int main(void)
 	
 	UART0_print("UART0 test\r\n");
 	UART1_print("UART1 test\r\n");
+	// example program 
+	MOTOR_drive(255, 255);
+	_delay_ms(3000);
+	MOTOR_break();
+	_delay_ms(3000);
+	MOTOR_drive(-255, -255);
+	_delay_ms(3000);
+	MOTOR_drive(-150, 50);
+	_delay_ms(3000);
+	MOTOR_drive(50, -150);
+	_delay_ms(3000);
+	MOTOR_break();
+	// end of example program
 	LED2_OFF;
 	
 	for(;;) //glowna petla programu
