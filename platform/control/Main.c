@@ -69,6 +69,8 @@ int main(void)
     unsigned char rcv;
     char tmp[8];
     int itmp;
+	char adc_tmp[10];
+	int iter;
 
     ioinit();	
 	UART0_init();					  
@@ -87,6 +89,7 @@ int main(void)
 	UART0_print("UART0 test\r\n");
 	UART1_print("UART1 test\r\n");
 	// example program 
+	/*
 	MOTOR_drive(255, 255);
 	_delay_ms(3000);
 	MOTOR_break();
@@ -98,6 +101,7 @@ int main(void)
 	MOTOR_drive(50, -150);
 	_delay_ms(3000);
 	MOTOR_break();
+	*/
 	// end of example program
 	LED2_OFF;
 	
@@ -108,145 +112,84 @@ int main(void)
 			switch(rcv = UART1_receive_byte())
 			{
 				case 'x':
-					UART1_print("echo ");
+					UART1_print("echo 2");
 					UART1_print("\r\n");
 					break;
-				case 'v':
-					UART1_print("Podaj nowa predkosc (-255 - 255): ");
-					UART1_gets(tmp,8);
-					itmp = atoi(tmp);
-					UART1_print("\r\n");
-					MOTOR_drive(itmp,itmp);
-					break;		
-				case 'b':
-					MOTOR_break();						
-					break;
-				case 'l':
-					MOTOR_sleep();
-					break;
-				case 'e':
-					STEP_enable();
-					break;
-				case 'd':
-					STEP_disable();
-					break;		
-				case 'w':
-					STEP_start();
-					break;
-				case 's':
-					STEP_stop();
-					break;	
-				case 'p':
-					UART1_print("Podaj nowa pozycje: ");
-					UART1_gets(tmp,8);
-					itmp = atoi(tmp);
-					UART1_print("\r\n");
-					STEP_go_to_pos(itmp);
-					break;																	
-				case 'j':
-					UART1_print("Podaj nowa predkosc (-255 - 255): ");
-					UART1_gets(tmp,8);
-					itmp = atoi(tmp);
-					UART1_print("\r\n");
-					MOTOR3_set_speed(itmp);	
-					MOTOR4_set_speed(itmp);					
-					break;
-				case 'k':
-					MOTOR3_break();
-					MOTOR4_break();
-					break;	
-				case 'g':
-					MOTOR5_left();
-					MOTOR6_left();
-					break;
-				case 'h':
-					MOTOR5_right();
-					MOTOR6_right();
-					break;	
-				case 't':
-					MOTOR5_stop();
-					MOTOR6_stop();				
-					break;	
-				case 'y':
-					MOTOR5_break();
-					MOTOR6_break();					
-					break;
-				case 'o':
-					PORTD |= (1<<KEY1)|(1<<KEY2); //wlaczenie kluczy tranzystorowych
-					break;			
-				case 'f':
-					PORTD &= ~((1<<KEY1)|(1<<KEY2)); //wlaczenie kluczy tranzystorowych
-					break;		
 			}
 		}
 		if(UART0_data_in_rx_buffer())
 		{
 			switch(rcv = UART0_receive_byte())
 			{
+				case 'x':
+					// simple echo comand check connection
+					UART0_print("echo");
+					UART0_print("\r\n");
+					break;
 				case 'v':
+					// set velocity example:
+					//v 150
 					UART0_print("Podaj nowa predkosc (-255 - 255): ");
 					UART0_gets(tmp,8);
 					itmp = atoi(tmp);
 					UART0_print("\r\n");
 					MOTOR_drive(itmp,itmp);
-					break;		
-				case 'b':
-					MOTOR_break();						
 					break;
-				case 'l':
-					MOTOR_sleep();
-					break;
-				case 'e':
-					STEP_enable();
-					break;
-				case 'd':
-					STEP_disable();
-					break;														
 				case 'w':
-					STEP_start();
+					// move forward maximum speed
+					MOTOR_drive(255, 255);
+					UART0_print("Forward");
+					UART0_print("\r\n");
 					break;
 				case 's':
-					STEP_stop();
-					break;			
-				case 'p':
-					UART0_print("Podaj nowa pozycje: ");
-					UART0_gets(tmp,8);
-					itmp = atoi(tmp);
+					// move backward maximum speed
+					MOTOR_drive(-255, -255);
+					UART0_print("Backward");
 					UART0_print("\r\n");
-					STEP_go_to_pos(itmp);
-					break;				
-				case 'j':
-					UART0_print("Podaj nowa predkosc (-255 - 255): ");
-					UART0_gets(tmp,8);
-					itmp = atoi(tmp);
+					break;
+				case 'd':
+					// turn right
+					MOTOR_drive(150, -150);
+					UART0_print("Right");
 					UART0_print("\r\n");
-					MOTOR3_set_speed(itmp);	
-					MOTOR4_set_speed(itmp);					
 					break;
-				case 'k':
-					MOTOR3_break();
-					MOTOR4_break();
-					break;																														
-				case 'g':
-					MOTOR5_left();
-					MOTOR6_left();
+				case 'a':
+					// turn left
+					MOTOR_drive(-150, 150);
+					UART0_print("Left");
+					UART0_print("\r\n");
 					break;
-				case 'h':
-					MOTOR5_right();
-					MOTOR6_right();
-					break;	
-				case 't':
-					MOTOR5_stop();
-					MOTOR6_stop();				
-					break;	
+				case 'b':
+					// stop platform
+					MOTOR_break();
+					UART0_print("MOTOR_break");
+					UART0_print("\r\n");						
+					break;
+				case 'q':
+					// reduce power consumption
+					MOTOR_sleep();
+					UART0_print("MOTOR_sleep");
+					UART0_print("\r\n");
+					break;
+				case 'm':
+					UART0_print("Measure ADC");
+					UART0_print("\r\n");
+					for (iter = 0; iter < 10; iter++) {adc_tmp[iter] = '\0';};
+					itoa(uint_global_prad_M2, adc_tmp, 10);
+					adc_tmp[9] = '\0';
+					UART0_print("ADC4 ");
+					UART0_print(adc_tmp);
+					for (iter = 0; iter < 10; iter++) {adc_tmp[iter] = '\0';};
+					itoa(uint_global_prad_M3, adc_tmp, 10);
+					adc_tmp[9] = '\0';
+					UART0_print(" ADC5 ");
+					UART0_print(adc_tmp);
+					UART0_print("\r\n");
+					break;
 				case 'y':
-					MOTOR5_break();
-					MOTOR6_break();					
-					break;
-				case 'o':
 					KEY_PORT |= (1<<KEY1)|(1<<KEY2); //wlaczenie kluczy tranzystorowych
 					break;			
-				case 'f':
+				case 'z':
 					KEY_PORT &= ~((1<<KEY1)|(1<<KEY2)); //wlaczenie kluczy tranzystorowych
 					break;												
 			}

@@ -40,13 +40,13 @@ extern void UART0_init(void)//inicjalizacja komunikacji
 unsigned char x;
    
 	//UBRRH=0x01;
-	//UBRRL=0xA0;		//dla 2400@16MHz
-	//UBRRL=207;		//dla 4800@16MHz
-	//UBRRL=103;		//dla 9600@16MHz
-	//UBRRL=51;			//dla 19200@16MHz
-	UBRR0L=16;			//dla 57600@16MHz
-	//UBRRL=8;			//dla 57600@8MHz
-	//UBRRL=8;			//dla 115200@16MHz
+	//UBRR0L=0xA0;		//dla 2400@16MHz
+	//UBRR0L=207;		//dla 4800@16MHz
+	//UBRR0L=103;		//dla 9600@16MHz
+	//UBRR0L=51;			//dla 19200@16MHz
+	//UBRR0L=16;		//dla 57600@16MHz
+	//UBRR0L=8;			//dla 57600@8MHz
+	UBRR0L=8;			//dla 115200@16MHz
    
    UCSR0B=0x98;//10011000
    UCSR0C=0x86;
@@ -65,13 +65,13 @@ extern void UART1_init(void)//inicjalizacja komunikacji
 unsigned char x;
    
 	//UBRRH=0x01;
-	//UBRRL=0xA0;		//dla 2400@16MHz
-	//UBRRL=207;		//dla 4800@16MHz
-	//UBRRL=103;		//dla 9600@16MHz
-	//UBRRL=51;			//dla 19200@16MHz
-	UBRR1L=16;			//dla 57600@16MHz
-	//UBRRL=8;			//dla 57600@8MHz
-	//UBRRL=8;			//dla 115200@16MHz
+	//UBRR1L=0xA0;		//dla 2400@16MHz
+	//UBRR1L=207;		//dla 4800@16MHz
+	//UBRR1L=103;		//dla 9600@16MHz
+	//UBRR1L=51;			//dla 19200@16MHz
+	//UBRR1L=16;		//dla 57600@16MHz
+	//UBRR1L=8;			//dla 57600@8MHz
+	UBRR1L=8;			//dla 115200@16MHz
    
    UCSR1B=0x98;//10011000
    UCSR1C=0x86;
