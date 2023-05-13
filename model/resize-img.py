@@ -23,3 +23,4 @@ for fil in files:
             dim=(width,height)
         resized = cv2.resize(im, dim, interpolation = cv2.INTER_LANCZOS4)
         cv2.imwrite(os.path.join(output_dir,f"{filename}.jpg"),resized)
+        os.remove(os.path.join(folder_path,basename))
