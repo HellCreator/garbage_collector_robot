@@ -1,13 +1,13 @@
 import cv2 as cv
 import glob
 import os
-folder_path = "C:/Users/mohfi/OneDrive/Desktop/Garbage-Image/New folder/train/images/"
+folder_path = "C:/Users/mohfi/OneDrive/Desktop/Garbage-Image/Images/"
 files = glob.glob(os.path.join(folder_path, '*.jpg'))
 for fil in files:
     basename = os.path.basename(fil)
     filename = os.path.splitext(basename)[0]
     im = cv.imread(os.path.join(folder_path,basename))
-    f=max(im.shape[:1])
+    f=max(im.shape[:2])
     if f>1024:
         index=im.shape.index(f)
         if index==0:
