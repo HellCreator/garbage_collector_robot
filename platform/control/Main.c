@@ -88,21 +88,6 @@ int main(void)
 	
 	UART0_print("UART0 test\r\n");
 	UART1_print("UART1 test\r\n");
-	// example program 
-	/*
-	MOTOR_drive(255, 255);
-	_delay_ms(3000);
-	MOTOR_break();
-	_delay_ms(3000);
-	MOTOR_drive(-255, -255);
-	_delay_ms(3000);
-	MOTOR_drive(-150, 50);
-	_delay_ms(3000);
-	MOTOR_drive(50, -150);
-	_delay_ms(3000);
-	MOTOR_break();
-	*/
-	// end of example program
 	LED2_OFF;
 	
 	for(;;) //glowna petla programu
@@ -172,19 +157,23 @@ int main(void)
 					UART0_print("\r\n");
 					break;
 				case 'm':
-					UART0_print("Measure ADC");
+					UART0_print("voltage /10 V");
 					UART0_print("\r\n");
-					for (iter = 0; iter < 10; iter++) {adc_tmp[iter] = '\0';};
-					itoa(uint_global_prad_M2, adc_tmp, 10);
-					adc_tmp[9] = '\0';
-					UART0_print("ADC4 ");
-					UART0_print(adc_tmp);
 					for (iter = 0; iter < 10; iter++) {adc_tmp[iter] = '\0';};
 					itoa(uint_global_prad_M3, adc_tmp, 10);
 					adc_tmp[9] = '\0';
-					UART0_print(" ADC5 ");
+					UART0_print("accumulator ");
+					UART0_print(adc_tmp);
+					for (iter = 0; iter < 10; iter++) {adc_tmp[iter] = '\0';};
+					itoa(uint_global_prad_M4, adc_tmp, 10);
+					adc_tmp[9] = '\0';
+					UART0_print(" Internal reference 1.26V ");
 					UART0_print(adc_tmp);
 					UART0_print("\r\n");
+					// v ref 2.56 V
+					// bandcap 1.26 V
+					// vin *1024/vref
+					//ADC4 3741 ADC5 3886
 					break;
 				case 'y':
 					KEY_PORT |= (1<<KEY1)|(1<<KEY2); //wlaczenie kluczy tranzystorowych

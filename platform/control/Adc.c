@@ -57,9 +57,11 @@ ISR(ADC_vect) //Przerwanie ADC Conversion Complete
 				
 				//wejscie (sdingle ended) pomiaru pradu M3 (ADC4)
                 ADMUX = (1<<REFS0) | 0b00100 ;
+				// use internal band gap source to calibrate
+				//ADMUX = (1<<REFS0) | 0b11110;
 				
-                uint_global_prad_M2 = 3.68*(pomiar >> 4);//wyliczenie sredniej, przesuniecie w prawo o 4 bity jest rownowazne dzieleniu przez 16
-                										//wynik wyskalowany tak zeby byl w mA					
+                //uint_global_prad_M2 = 3.68*(pomiar >> 4);
+				uint_global_prad_M2 = pomiar;
 				pomiar = 0;
 
 				ADC_turn_on();
@@ -72,15 +74,15 @@ ISR(ADC_vect) //Przerwanie ADC Conversion Complete
 			pomiar += ADC;
 			if(--ile_pomiarow == 0)
 			{
-				ADC_turn_off(); //ma na celu upewnienie sie zenastepny wynik nie bedzi dotyczyl poprzedniego kanalu ADC
+				ADC_turn_off();
 				ADC_channel = POMIAR_M4;
 				ile_pomiarow = ADC_ILOSC_POMIAROW;
 								
-                //wejscie (sdingle ended) pomiaru pradu M4 (ADC5)
-                ADMUX = (1<<REFS0) | 0b00101 ;
-                
-				uint_global_prad_M3 = 0.6745*(pomiar >> 4);//wyliczenie sredniej, przesuniecie w prawo o 4 bity jest rownowazne dzieleniu przez 16
-                										//wynik wyskalowany tak zeby byl w mA
+                //old channel M4 (ADC5)
+                //ADMUX = (1<<REFS0) | 0b00101 ;
+				//uint_global_prad_M3 = 0.6745*(pomiar >> 4);
+				ADMUX = (1<<REFS0) | 0b11110;
+				uint_global_prad_M3 = (unsigned int)((33.2*pomiar)/1024);
 				pomiar = 0;
 
 				ADC_turn_on();
@@ -100,8 +102,7 @@ ISR(ADC_vect) //Przerwanie ADC Conversion Complete
 				//wejscie roznicowe pomiaru pradu M1 (ADC1-ADC0), wzmocnienie 10
 				ADMUX = (1<<REFS0) | 0b01001 ;				
 				
-				uint_global_prad_M4 = 0.6745*(pomiar >> 4);//wyliczenie sredniej, przesuniecie w prawo o 4 bity jest rownowazne dzieleniu przez 16
-                										//wynik wyskalowany tak zeby byl w mA
+				uint_global_prad_M4 = (unsigned int)((33.2*pomiar)/1024);
 				pomiar=0;
 				
 				ADC_turn_on();
