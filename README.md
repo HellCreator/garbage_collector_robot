@@ -64,6 +64,8 @@ The following file contains all the commands required to install the SDK , creat
 5. Press configure to get the flags.
 6. Select the flags "DBUILD_NETWORK_DEVICE=ON ,-DFORCE_RSUSB_BACKEND=ON". and press Generate.
 
+<p align="center"><img src="images/CMAKE_WINDOWS.png" width="70%" /><br><br></p>
+
 ## Compile using Visual Studio
 1. Open Visual Studio and load the folder that conatains the files generated in the previous step.
 2. Open the folder tools/realsense-viewer.
