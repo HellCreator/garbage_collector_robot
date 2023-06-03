@@ -1,0 +1,9 @@
+[  238.745184] usb 1-1.2: USB disconnect, device number 4
+[  241.269728] usb 1-1.2: new high-speed USB device number 5 using dwc2
+[  241.375010] usb 1-1.2: New USB device found, idVendor=1a6e, idProduct=089a, bcdDevice= 1.00
+[  241.375052] usb 1-1.2: New USB device strings: Mfr=0, Product=0, SerialNumber=0
+discover ip adresses in local network
+sudo arp-scan --interface=wlp0s20f3 --localnet
+robot creds
+robot
+robotpassword
