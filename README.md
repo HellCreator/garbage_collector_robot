@@ -45,6 +45,15 @@ The following file contains all the commands required to install the SDK , creat
 1. In the following folder you will find the files for running the server using python ~/librealsense/wrappers/python/examples/ethernet_client_server 
 2. The EtherSenseServer.py has the source code to run the Camera Depth Channel.
 3. Once the server is running you need to run the EtherSenseClient.py on the client side.
- > **Note**: If you get the error "TypeError: sequence item 0: expected str instance, bytes found." just add change the line "self.frame_data = ''.join([length, ts, data])" to "self.frame_data = b''.join([length, ts, data])".
+ > **Note**: If you get the error "TypeError: sequence item 0: expected str instance, bytes found."  just change the line  "self.frame_data = ''.join([length, ts, data])"  to  "self.frame_data = b''.join([length, ts, data])".
 5. "Remember the raspberry pi and the client have to be in the same network".
+
+## Using the network camera option (C++) using Windows:
+
+1. Download the file [Windows source code.zip](https://github.com/IntelRealSense/librealsense/releases) after that extract the files.
+2. Download and install [CMAKE](https://cmake.org/download/)
+3. Run CMAKE and open the folder where you extracted the source files using the "Browse  
+4. Just run the command "rs-server" you should get a message "Rs-server is running"
+
+
 
