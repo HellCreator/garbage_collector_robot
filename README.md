@@ -52,8 +52,15 @@ The following file contains all the commands required to install the SDK , creat
 
 1. Download the file [Windows source code.zip](https://github.com/IntelRealSense/librealsense/releases) after that extract the files.
 2. Download and install [CMAKE](https://cmake.org/download/)
-3. Run CMAKE and open the folder where you extracted the source files using the "Browse  
-4. Just run the command "rs-server" you should get a message "Rs-server is running"
+3. Run CMAKE and open the folder where you extracted the source files using the "Browse Source.
+4. Select where you want to build the binaries.
+5. Press configure to get the flags.
+6. Select the flags "DBUILD_NETWORK_DEVICE=ON ,-DFORCE_RSUSB_BACKEND=ON". and press Generate.
+
+# Compile using Visual Studio
+1. Open Visual Studio and load the folder that conatains the files generated in the previous step.
+2. Select 
+8. Just run the command "rs-server" you should get a message "Rs-server is running"
 
 
 
