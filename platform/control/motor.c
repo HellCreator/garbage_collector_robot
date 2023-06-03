@@ -87,6 +87,50 @@ void MOTOR_drive(signed int left_speed,signed int right_speed)
 		OCR3B = (unsigned char)(abs(left_speed));  
 	
 }
+
+void MOTOR_right(signed int right_speed)
+{
+	if((left_speed != 0) || (right_speed != 0))
+		PG3_SLEEP_PORT |= (1<<PG3_SLEEP); //wybudzenie driverow DC ze stanu uspienia
+	
+	if(right_speed > 0) //obrot w prawo
+	{
+		M2_PORT |= (1<<M2_IN1);
+		M2_PORT &= ~(1<<M2_IN2);
+	}
+	else if(right_speed<0) //obrot w lewo
+	{
+		M2_PORT &= ~(1<<M2_IN1);
+		M2_PORT |= (1<<M2_IN2);
+	}
+
+    if(abs(right_speed) >= PWM_MAX) //ograniczenie wartosci maksymalnej
+		OCR3A = PWM_MAX;
+	else
+		OCR3A = (unsigned char)(abs(right_speed));	
+}
+
+void MOTOR_left(signed int left_speed)
+{
+	if((left_speed != 0) || (right_speed != 0))
+		PG3_SLEEP_PORT |= (1<<PG3_SLEEP); //wybudzenie driverow DC ze stanu uspienia
+
+	if(left_speed > 0) //obot w prawo
+	{
+		M1_PORT |= (1<<M1_IN1);
+		M1_PORT &= ~(1<<M1_IN2);
+	}
+	else if(left_speed < 0) //obrot w lewo
+	{
+		M1_PORT &= ~(1<<M1_IN1);
+		M1_PORT |= (1<<M1_IN2);
+	}
+
+    if(abs(left_speed) >= PWM_MAX) //ograniczenie wartosci maksymalnej
+		OCR3B = PWM_MAX;
+	else
+		OCR3B = (unsigned char)(abs(left_speed));
+}
 /*******************************************************************************
 Funkcja:
 	void MOTOR_break(void)

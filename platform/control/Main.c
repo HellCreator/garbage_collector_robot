@@ -111,10 +111,24 @@ int main(void)
 					UART0_print("echo");
 					UART0_print("\r\n");
 					break;
+				case 'c':
+					UART0_print("set new left speed (-255 - 255): ");
+					UART0_gets(tmp,8);
+					itmp = atoi(tmp);
+					UART0_print("\r\n");
+					MOTOR_left(itmp);
+					break;
+				case 'e':
+					UART0_print("set new left speed (-255 - 255): ");
+					UART0_gets(tmp,8);
+					itmp = atoi(tmp);
+					UART0_print("\r\n");
+					MOTOR_right(itmp);
+					break;
 				case 'v':
 					// set velocity example:
 					//v 150
-					UART0_print("Podaj nowa predkosc (-255 - 255): ");
+					UART0_print("set new speed (-255 - 255): ");
 					UART0_gets(tmp,8);
 					itmp = atoi(tmp);
 					UART0_print("\r\n");

@@ -19,7 +19,9 @@ silnikami DC.
 
 //deklaracje funkcji
 void MOTOR_init(void);
-void MOTOR_drive(signed int left_speed,signed int right_speed); 
+void MOTOR_drive(signed int left_speed,signed int right_speed);
+void MOTOR_left(signed int left_speed);
+void MOTOR_right(signed int right_speed);
 void MOTOR_break(void);
 void MOTOR_sleep(void);
 void MOTOR34_init(void);
