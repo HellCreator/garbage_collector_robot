@@ -40,6 +40,9 @@ The following file contains all the commands required to install the SDK , creat
 3. To test the camera follow the following examples:
   * [C++](https://dev.intelrealsense.com/docs/code-samples).
   * [Python](https://dev.intelrealsense.com/docs/python2).
+
+# Using the Realsense Camera over Network
+
 ## Using network camera option (Python):
 
 1. In the following folder you will find the files for running the server using python ~/librealsense/wrappers/python/examples/ethernet_client_server 
@@ -50,6 +53,10 @@ The following file contains all the commands required to install the SDK , creat
 
 ## Using the network camera option (C++) using Windows:
 
+## Run Server in Rasbpberry pi
+1.Just run the command "rs-server" you should get a message "Rs-server is running"
+
+## Compile the Realsense Viewer  
 1. Download the file [Windows source code.zip](https://github.com/IntelRealSense/librealsense/releases) after that extract the files.
 2. Download and install [CMAKE](https://cmake.org/download/)
 3. Run CMAKE and open the folder where you extracted the source files using the "Browse Source.
@@ -57,10 +64,17 @@ The following file contains all the commands required to install the SDK , creat
 5. Press configure to get the flags.
 6. Select the flags "DBUILD_NETWORK_DEVICE=ON ,-DFORCE_RSUSB_BACKEND=ON". and press Generate.
 
-# Compile using Visual Studio
+## Compile using Visual Studio
 1. Open Visual Studio and load the folder that conatains the files generated in the previous step.
-2. Select 
-8. Just run the command "rs-server" you should get a message "Rs-server is running"
+2. Open the folder tools/realsense-viewer.
+3. After selecting build the project ,once buid go to the folder Debug , that is where the real-viewer.exe is located.
+
+## Running the Realsense Viewer
+
+1. Run the realsense Viewer and go to Settings.
+2. Go to Performace and uncheck the option "Use GLSL for processing" and check "Use GLSL for rendering" 
+3. Go to Add Source and Add Network Device. 
+8. Connect using the ip address of the Raspberry pi.
 
 
 
