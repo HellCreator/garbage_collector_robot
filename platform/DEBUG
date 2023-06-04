@@ -7,3 +7,103 @@ sudo arp-scan --interface=wlp0s20f3 --localnet
 robot creds
 robot
 robotpassword
+
+m5 stack
+
+from m5stack import *
+from m5ui import *
+from uiflow import *
+from ThirdParty.myCobot import mycobot
+
+
+setScreenColor(0x222222)
+
+cobot = mycobot.MyCobot()
+cobot.power_on()
+cobot.set_free_mode()
+cobot.release_all_servos()
+cobot.power_off()
+
+label0 = M5TextBox(15, 106, "Slave Baud", lcd.FONT_Default, 0xFFFFFF, rotate=0)
+label1 = M5TextBox(12, 130, "115200", lcd.FONT_DejaVu40, 0x02c7fc, rotate=0)
+label2 = M5TextBox(15, 20, "TX", lcd.FONT_Default, 0xFFFFFF, rotate=0)
+label3 = M5TextBox(139, 20, "RX", lcd.FONT_Default, 0xFFFFFF, rotate=0)
+label4 = M5TextBox(12, 40, "G17", lcd.FONT_DejaVu40, 0x00ff38, rotate=0)
+label5 = M5TextBox(136, 40, "G16", lcd.FONT_DejaVu40, 0x00ff38, rotate=0)
+label9 = M5TextBox(173, 106, "/", lcd.FONT_DejaVu72, 0xFFFFFF, rotate=0)
+label10 = M5TextBox(199, 125, "PC default baud", lcd.FONT_Default, 0xFFFFFF, rotate=0)
+label11 = M5TextBox(224, 149, "115200", lcd.FONT_Default, 0xFFFFFF, rotate=0)
+
+
+uart1 = machine.UART(1, tx=1, rx=3)
+uart1.init(115200, bits=8, parity=None, stop=1)
+uart2 = machine.UART(2, tx=17, rx=16)
+uart2.init(115200, bits=8, parity=None, stop=1)
+while True:
+  if uart1.any():
+    uart2.write(bytes(uart1.read()))
+  if uart2.any():
+    uart1.write(bytes(uart2.read()))
+  wait_ms(2)
+
+
+  from m5stack import *
+from m5ui import *
+from uiflow import *
+from ThirdParty.myCobot import mycobot
+
+
+setScreenColor(0x222222)
+
+
+cycle = None
+
+
+
+
+
+
+
+cobot = mycobot.MyCobot()
+cycle = 1
+lcd.clear()
+lcd.fill(0x000000)
+lcd.font(lcd.FONT_Ubuntu)
+lcd.print('Hello', 0, 0, 0xffffff)
+uart2 = machine.UART(2, tx=18, rx=19)
+uart2.init(115200, bits=8, parity=None, stop=1)
+uart2.write('TEST ROBOARM'+"\r\n")
+while cycle:
+  if uart2.any():
+    uart2.write('got line'+"\r\n")
+    uart2.write(str(uart2.readline())+"\r\n")
+from m5stack import *
+from m5ui import *
+from uiflow import *
+from ThirdParty.myCobot import mycobot
+
+
+setScreenColor(0x222222)
+
+
+cycle = None
+
+
+
+
+
+
+
+cobot = mycobot.MyCobot()
+cycle = 1
+lcd.clear()
+lcd.fill(0x000000)
+lcd.font(lcd.FONT_Ubuntu)
+lcd.print('Hello', 0, 0, 0xffffff)
+uart2 = machine.UART(2, tx=18, rx=19)
+uart2.init(115200, bits=8, parity=None, stop=1)
+uart2.write('TEST ROBOARM'+"\r\n")
+while cycle:
+  if uart2.any():
+    uart2.write('got line'+"\r\n")
+    uart2.write(str(uart2.readline())+"\r\n")
