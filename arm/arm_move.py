@@ -16,33 +16,33 @@ b'start_position is\r\n',
 '''
 
 command_list = [
+    # Returns on (power on) off (poweroff)
     b'power is\r\n',
+    # Enable power of robot
     b'power on\r\n',
     b'power is\r\n',
+    # Check joint angels
     b'get_position is\r\n',
-    b'start_position is\r\n',
+    # reach coordinates
+    #b'set_coords_sync 500 300 300 0 0 0 10 1 15 \r\n',
+    # set joint  angels to 0 0 0 0 0 0 with speed 10 wait till they reach target or timeout 10
+    b'set_angles_sync 0 0 0 0 0 0 10 10 \r\n'
     b'get_position is\r\n',
-    b'set_angle 1 30 \r\n',
-    #b'set_angle 2 30 \r\n',
-    #b'set_angle 3 10 \r\n',
-    #b'set_angle 4 10 \r\n',
-    b'set_angle 5 90 \r\n',
-    b'set_angle 6 90 \r\n',
-    b'power is\r\n',
-    b'power is\r\n',
-    b'power is\r\n',
-    b'power is\r\n',
-    b'power is\r\n',
-    b'power is\r\n',
+    b'set_angles_sync 60 -20 30 -40 90 90 10 10 \r\n'
     b'get_position is\r\n',
-    b'set_position 10 0 0 0 0 0 10 \r\n',
+    # set angels and do not wait till robot finish movement
+    b'set_position -60 20 -30 40 0 0 10 \r\n',
+    # check if robot moving in this moment True/False
+    b'get_is_moving \r\n',
     b'get_position is\r\n',
-    b'start_position is\r\n',
-    b'get_joint_maxmin is\r\n',
+    b'set_angles_sync 0 0 0 0 0 0 10 10 \r\n'
+    b'get_position is\r\n',
+    # rest position
+    b'set_angles_sync 0 -140 150 -150 -75 0 10 20\r\n'
+    b'get_position is\r\n',
+    b'set_angles_sync 0 0 0 0 0 0 10 10 \r\n'
+    b'get_position is\r\n',
     b'power off\r\n',
-    b'power is\r\n',
-    b'power is\r\n',
-    b'power is\r\n',
     b'power is\r\n',
     b'power is\r\n',
     b'power is\r\n',
@@ -51,7 +51,7 @@ command_list = [
     b'power is\r\n',
 ]
 
-ser = serial.Serial ("/dev/ttyUSB0", 112500)
+ser = serial.Serial("/dev/ttyUSB0", 112500)
 for command in command_list:
     ser.write(command)
     sleep(1)

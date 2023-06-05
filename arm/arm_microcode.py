@@ -43,10 +43,14 @@ def parse_command(uart_in, robot, uart_write_func):
             return 'retruned to start position [0,0,0,0,0,0], 10 done.'
         elif command[0] == 'get_position':
             return 'angles ' + str(robot.get_angles())
-        elif command[0] == 'set_angle':
-            uart_write_func('move ' + str(command[1]) + ' joint to angle ' + str(command[2]) + '...\r\n')
-            #robot.send_angle(int(command[1]), int(command[2]), 10)
-            robot.jog_angle(int(command[1]), int(command[2]), 10)
+        elif command[0] == 'set_angles_sync':
+            uart_write_func('move ' + str(command) + '...\r\n')
+            #robot.jog_angle(int(command[1]), int(command[2]), 10)
+            robot.sync_send_angles(
+                [float(command[1]),float(command[2]),float(command[3]),float(command[4]),float(command[5]),float(command[6])],
+                int(command[7]),
+                int(command[8]),
+                )
             return 'moved ' + str(command[1]) + ' joint to start angle ' + str(command[2]) + ' done.'
         elif command[0] == 'get_joint_maxmin':
             return '1: [' + str(robot.get_joint_min_angle(1)) + ':' + str(robot.get_joint_max_angle(1)) + '] ' + \
@@ -59,7 +63,7 @@ def parse_command(uart_in, robot, uart_write_func):
             return 'True\r\n' if robot.is_moving() else 'False\r\n'
         elif command[0] == 'set_position':
             uart_write_func('move to position....')
-            robot.send_angles([int(command[1]),int(command[2]),int(command[3]),int(command[4]),int(command[5]),int(command[6])],int(command[7]))
+            robot.send_angles([float(command[1]),float(command[2]),float(command[3]),float(command[4]),float(command[5]),float(command[6])],int(command[7]))
             timeout = 0
             while robot.is_moving():
                 timeout += 1
@@ -68,7 +72,24 @@ def parse_command(uart_in, robot, uart_write_func):
                     break
                 wait_ms(100)
             return 'position ' + str(robot.get_angles()) + ' done.'
-        
+        elif command[0] == 'set_coords_sync':
+            '''
+            coords: a list of coords value(List[float]).
+                        for mycobot :[x(mm), y, z, rx(angle), ry, rz]\n
+                        for mypalletizer: [x, y, z, θ]
+                        for mypalletizer 340: [x, y, z]
+            speed : (int) 0 ~ 100
+            mode : (int) 0 - angluar, 1 - linear (mypalletizer 340 does not require this parameter)
+            timeout=7
+            '''
+            uart_write_func('move to coords....')
+            robot.sync_send_coords(
+                [float(command[1]),float(command[2]),float(command[3]),float(command[4]),float(command[5]),float(command[6])],
+                int(command[7]),
+                int(command[8]),
+                int(command[9]),
+                )
+            return 'coords ' + str(robot.get_angles()) + ' done.'
     except Exception as e:
         return 'Error during command: ' + str(e)
 
@@ -86,8 +107,6 @@ def main_run():
             wait_ms(100)
             message = uart2.readline().decode()
             response = parse_command(message, cobot, uart2.write)
-            #uart2.write('echo ')
-            #uart2.write(message)
             uart2.write(str(response) + "\r\n") 
 
 main_run()
