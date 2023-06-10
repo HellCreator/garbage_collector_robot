@@ -6,7 +6,7 @@ With robotic arm mounted on top of it controlled by Raspberry Pi4 with ROS
 
 # Intel Realsense SDK installation Instructions for Raspberry pi 3:
 This instructions are specifically to succesfully build the SDK on Raspberry pi model b+ only, not tested in other platforms.
-> **Note**: In the case of RPi 3 model b+ RAM capacity is not sufficient to compile the SDK, so it is recommended to create a swap file of 2GB before trying to compile the SDK , you can get the information in this link [swap file](https://linuxize.com/post/create-a-linux-swap-file/).
+> **Note**: In the case of RPi 3 model b+ RAM capacity is not sufficient to compile the SDK, so it is recommended to create a swap file of 2GB before trying to compile the SDK , the installation file create it for you or you can get the information in this link [swap file](https://linuxize.com/post/create-a-linux-swap-file/).
 
 ## Prepare Raspberry pi 3 
 
