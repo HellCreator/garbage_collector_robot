@@ -47,7 +47,7 @@ sudo udevadm control --reload-rules && sudo udevadm trigger
 rm -rf build
 mkdir build && cd build
 
-cmake ../ -DBUILD_EXAMPLES=true -DBUILD_GRAPHICAL_EXAMPLES=false -DBUILD_PYTHON_BINDINGS=true -DBUILD_SHARED_LIBS=false -DPYTHON_EXECUTABLE=/usr/bin/python3 -DBUILD_NETWORK_DEVICE=ON -DFORCE_RSUSB_BACKEND=ON -DCMAKE_BUILD_TYPE=Release -DBUILD_PYTHON_DOCS=true
+cmake ../ -DBUILD_EXAMPLES=true -DBUILD_GRAPHICAL_EXAMPLES=false -DBUILD_PYTHON_BINDINGS=true -DBUILD_SHARED_LIBS=false -DPYTHON_EXECUTABLE=/usr/bin/python3 -DBUILD_NETWORK_DEVICE=ON -DFORCE_RSUSB_BACKEND=ON -DCMAKE_BUILD_TYPE=Release -DBUILD_PYTHON_DOCS=true  -DFORCE_LIBUVC=true
 
 sudo make uninstall && make clean && sudo make && sudo make install
 
