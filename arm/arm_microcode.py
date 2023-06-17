@@ -30,6 +30,15 @@ def parse_command(uart_in, robot, uart_write_func):
                 return 'power off'
             else:
                 return 'power is ' + 'on' if robot.is_power_on() else 'off'
+        elif command[0] == 'gripper_status':
+            return 'controller connected ' + str(robot.is_controller_connected()) + '\n gripper value ' + str(robot.get_gripper_value()) + '\n is moving ' + str(robot.is_gripper_moving())
+        elif command[0] == 'gripper_set':
+            if command[1] == 'state':
+                robot.set_gripper_state(int(command[2]), int(command[3]))
+                return 'position ' + str(robot.get_gripper_value()) + '\n is moving ' + str(robot.is_gripper_moving())
+            elif command[1] == 'value':
+                robot.set_gripper_value(int(command[2]), int(command[3]))
+                return 'value ' + str(robot.get_gripper_value()) + '\n is moving ' + str(robot.is_gripper_moving())
         elif command[0] == 'start_position':
             uart_write_func('move back to start position....\r\n')
             robot.send_angles([0,0,0,0,0,0], 10)
@@ -99,6 +108,7 @@ def parse_command(uart_in, robot, uart_write_func):
 def main_run():
     screen_init()
     cobot = mycobot.MyCobot()
+    cobot.set_gripper_ini()
     uart2 = machine.UART(2, tx=18, rx=19)
     uart2.init(115200, bits=8, parity=None, stop=1)
     uart2.write("\r\nTEST ROBOARM\r\n")

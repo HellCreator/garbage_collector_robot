@@ -90,7 +90,7 @@ void MOTOR_drive(signed int left_speed,signed int right_speed)
 
 void MOTOR_right(signed int right_speed)
 {
-	if((left_speed != 0) || (right_speed != 0))
+	if(right_speed != 0)
 		PG3_SLEEP_PORT |= (1<<PG3_SLEEP); //wybudzenie driverow DC ze stanu uspienia
 	
 	if(right_speed > 0) //obrot w prawo
@@ -112,7 +112,7 @@ void MOTOR_right(signed int right_speed)
 
 void MOTOR_left(signed int left_speed)
 {
-	if((left_speed != 0) || (right_speed != 0))
+	if(left_speed != 0)
 		PG3_SLEEP_PORT |= (1<<PG3_SLEEP); //wybudzenie driverow DC ze stanu uspienia
 
 	if(left_speed > 0) //obot w prawo

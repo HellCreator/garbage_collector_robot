@@ -15,7 +15,7 @@ b'get_position is\r\n',
 b'start_position is\r\n',
 '''
 
-command_list = [
+command_list_demo = [
     # Returns on (power on) off (poweroff)
     b'power is\r\n',
     # Enable power of robot
@@ -24,7 +24,7 @@ command_list = [
     # Check joint angels
     b'get_position is\r\n',
     # reach coordinates
-    #b'set_coords_sync 500 300 300 0 0 0 10 1 15 \r\n',
+    b'set_coords_sync 500 300 300 0 0 0 10 1 15 \r\n',
     # set joint  angels to 0 0 0 0 0 0 with speed 10 wait till they reach target or timeout 10
     b'set_angles_sync 0 0 0 0 0 0 10 10 \r\n'
     b'get_position is\r\n',
@@ -42,6 +42,21 @@ command_list = [
     b'get_position is\r\n',
     b'set_angles_sync 0 0 0 0 0 0 10 10 \r\n'
     b'get_position is\r\n',
+    # move gripper values 0-99 position 50 speed
+    b'gripper_status \r\n',
+    b'gripper_set value 0 50 \r\n',
+    b'gripper_status \r\n',
+    b'gripper_set value 20 50 \r\n',
+    b'gripper_status \r\n',
+    b'gripper_set value 40 50 \r\n',
+    b'gripper_status \r\n',
+    b'gripper_set value 60 50 \r\n',
+    b'gripper_status \r\n',
+    # move gripper state 1 closed 0 open 50 speed
+    b'gripper_set state 1 50 \r\n',
+    b'gripper_status \r\n',
+    b'gripper_set state 0 50 \r\n',
+    b'set_angles_sync 0 -140 150 -150 -75 0 10 20\r\n'
     b'power off\r\n',
     b'power is\r\n',
     b'power is\r\n',
@@ -49,6 +64,21 @@ command_list = [
     b'power is\r\n',
     b'power is\r\n',
     b'power is\r\n',
+]
+
+command_list = [
+    b'power on\r\n',
+    b'power is\r\n',
+    b'set_angles_sync 0 0 0 0 0 0 20 10 \r\n',
+    b'gripper_set state 0 50 \r\n',
+    b'set_angles_sync 0 -90 0 0 0 45 20 10 \r\n',
+    b'gripper_set state 1 50 \r\n',
+    b'set_angles_sync 0 0 -90 0 0 45 20 10 \r\n',
+    b'set_angles_sync -180 0 -90 0 0 45 20 10 \r\n',
+    b'gripper_set state 0 50 \r\n',
+    b'set_angles_sync 0 0 0 0 0 0 20 10 \r\n',
+    b'set_angles_sync 0 -140 150 -150 -75 0 20 20\r\n'
+    b'power off\r\n',
 ]
 
 ser = serial.Serial("/dev/ttyUSB0", 112500)

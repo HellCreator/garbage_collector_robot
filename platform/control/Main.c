@@ -148,13 +148,13 @@ int main(void)
 					break;
 				case 'd':
 					// turn right
-					MOTOR_drive(150, -150);
+					MOTOR_drive(200, -150);
 					UART0_print("Right");
 					UART0_print("\r\n");
 					break;
 				case 'a':
 					// turn left
-					MOTOR_drive(-150, 150);
+					MOTOR_drive(-150, 200);
 					UART0_print("Left");
 					UART0_print("\r\n");
 					break;

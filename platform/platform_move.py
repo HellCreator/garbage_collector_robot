@@ -5,6 +5,17 @@ command_list = [
     b'x',
     b'w',
     b'b',
+    b'm',
+    b'v 200    ',
+    b'c 200    ',
+    b'e -200   ',
+    b'v 150    ',
+    b'v 150    ',
+    b'v 200    ',
+    b'c -200   ',
+    b'v 200    ',
+    b'c -200   ',
+    b'b'
 ]
 
 ser = serial.Serial ("/dev/ttyS0", 112500)
