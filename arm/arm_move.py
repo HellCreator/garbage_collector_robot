@@ -81,8 +81,35 @@ command_list = [
     b'power off\r\n',
 ]
 
+command_list2 = [
+    b'power on\r\n',
+    b'get_position is\r\n',
+    b'gripper_set state 0 50 \r\n',
+    b'set_angles_sync 0 0 0 0 0 0 20 20\r\n',
+    b'set_angles_sync -75 0 0 0 0 0 20 20\r\n',
+    b'set_angles_sync -75 -85 0 0 0 45 20 20\r\n',
+    b'gripper_set state 1 100 \r\n',
+    b'power is\r\n',
+    b'power is\r\n',
+    b'power is\r\n',
+    b'set_angles_sync -75 -10 0 -75 0 45 20 20\r\n',
+    b'set_angles_sync 45 -10 0 -75 0 45 20 20\r\n',
+    b'gripper_set state 0 100 \r\n',
+    b'power is\r\n',
+    b'set_angles_sync 0 0 0 0 0 0 20 20\r\n',
+    b'set_angles_sync 0 -140 155 -145 90 -20 20 20\r\n',
+    b'power is\r\n',
+    b'power is\r\n',
+    b'power is\r\n',
+    b'power off\r\n',
+    b'power is\r\n',
+    b'power off\r\n',
+    b'power is\r\n',
+    b'power is\r\n',
+]
+
 ser = serial.Serial("/dev/ttyUSB0", 112500)
-for command in command_list:
+for command in command_list2:
     ser.write(command)
     sleep(1)
     received_data = ser.readline()
