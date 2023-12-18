@@ -40,8 +40,45 @@ command_list3 = [
     b'b'
 ]
 
+velocity_example = [
+    b'x',
+    b'x',
+    b'v 255     ',
+    b'x',
+    b'x',
+    b'v 200     ',
+    b'x',
+    b'x',
+    b'v 150     ',
+    b'x',
+    b'x',
+    b'v 100     ',
+    b'x',
+    b'x',
+    b'v 80      ',
+    b'x',
+    b'x',
+    b'v -255    ',
+    b'x',
+    b'x',
+    b'v -200    ',
+    b'x',
+    b'x',
+    b'v -150    ',
+    b'x',
+    b'x',
+    b'v -100    ',
+    b'x',
+    b'x',
+    b'v -80     ',
+    b'x',
+    b'x',
+    b'b',
+]
+
+
 ser = serial.Serial ("/dev/ttyS0", 112500)
-for command in command_list3:
+for command in velocity_example:
     ser.write(command)
     sleep(0.03)
     received_data = ser.readline()
